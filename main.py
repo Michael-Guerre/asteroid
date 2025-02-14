@@ -11,11 +11,12 @@ from shot import Shot
 
 def main():
     pygame.init()
+    pygame.font.init()
     print("Starting asteroids!")
     print(f"Screen width: {SCREEN_WIDTH}")
     print(f"Screen height: {SCREEN_HEIGHT}")
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
-
+    my_font = pygame.font.SysFont('Comic Sans MS', 30)
     clock = pygame.time.Clock()
     dt = 0
     updatable = pygame.sprite.Group()
@@ -44,14 +45,15 @@ def main():
                 sys.exit()
             for shot in shots:
                 if asteroid.check_collision(shot):
-                    asteroid.split()
+                    asteroid.split(shot)
                     shot.kill()
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 return
             
-
+        text = my_font.render(f"Score : {player.score}",True,(255,255,255))
+        screen.blit(text,(0,0))
         pygame.display.flip()
         dt = clock.tick(FPS)/1000
 

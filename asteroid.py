@@ -14,8 +14,9 @@ class Asteroid(circleshape.CircleShape):
     def update(self,dt):
         self.position += self.velocity*dt
     
-    def split(self):
+    def split(self,shot):
         self.kill()
+        shot.player.score+=1
         if self.radius <= ASTEROID_MIN_RADIUS:
             return
         else :

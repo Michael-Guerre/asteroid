@@ -3,8 +3,9 @@ import circleshape
 import pygame
 
 class Shot(circleshape.CircleShape):
-    def __init__(self,x,y):
+    def __init__(self,x,y,player):
         super().__init__(x,y,SHOT_RADIUS)
+        self.player = player
 
 
     def draw(self,screen):
