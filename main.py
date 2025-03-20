@@ -30,7 +30,7 @@ def main():
     Shot.containers = (shots,updatable,drawable)
     
     player = Player(SCREEN_WIDTH * 1 / 3,SCREEN_HEIGHT / 2,1)
-    player2 = Player(SCREEN_WIDTH * 2 / 3,SCREEN_HEIGHT / 2,2)
+    player2 = Player(SCREEN_WIDTH * 2 / 3,SCREEN_HEIGHT / 2,2,"red")
     asteroidField = AsteroidField()
     while True :
         screen.fill("black")
@@ -59,7 +59,7 @@ def main():
         text = my_font.render(f"Score 1 : {player.score}",True,(255,255,255))
         screen.blit(text,(0,0))
         text = my_font.render(f"Score 2 : {player2.score}",True,(255,255,255))
-        screen.blit(text,(0,SCREEN_WIDTH-5))
+        screen.blit(text,(SCREEN_WIDTH-200,0))
         pygame.display.flip()
         dt = clock.tick(FPS)/1000
 
