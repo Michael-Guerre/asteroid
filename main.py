@@ -29,7 +29,8 @@ def main():
     Asteroid.containers = (asteroids,updatable,drawable)
     Shot.containers = (shots,updatable,drawable)
     
-    player = Player(SCREEN_WIDTH / 2,SCREEN_HEIGHT / 2)
+    player = Player(SCREEN_WIDTH * 1 / 3,SCREEN_HEIGHT / 2,1)
+    player2 = Player(SCREEN_WIDTH * 2 / 3,SCREEN_HEIGHT / 2,2)
     asteroidField = AsteroidField()
     while True :
         screen.fill("black")
@@ -41,7 +42,10 @@ def main():
 
         for asteroid in asteroids:
             if asteroid.check_collision(player):
-                print("Game over!")
+                print("Game over!\nPlayer 1 Died")
+                sys.exit()
+            if asteroid.check_collision(player2):
+                print("Game over!\nPlayer 2 Died")
                 sys.exit()
             for shot in shots:
                 if asteroid.check_collision(shot):
@@ -52,8 +56,10 @@ def main():
             if event.type == pygame.QUIT:
                 return
             
-        text = my_font.render(f"Score : {player.score}",True,(255,255,255))
+        text = my_font.render(f"Score 1 : {player.score}",True,(255,255,255))
         screen.blit(text,(0,0))
+        text = my_font.render(f"Score 2 : {player2.score}",True,(255,255,255))
+        screen.blit(text,(0,SCREEN_WIDTH-5))
         pygame.display.flip()
         dt = clock.tick(FPS)/1000
 
